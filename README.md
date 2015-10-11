@@ -1,5 +1,6 @@
 # JS-jQuery-Ajax projects
 Projects based on JavaScript, jQuery and API.
 
-1.- folder is a webAPP for drawing with colors.
-2.- folder is a webAPP for searching photos in Flickr
+1.- WebAPP for drawing with colors.
+2.- WebAPP for searching photos in Flickr.
+3.- Custom Search Engine using Google API.
