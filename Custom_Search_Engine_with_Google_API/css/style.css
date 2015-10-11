@@ -1,0 +1,173 @@
+/*CSS reset.............................................*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*Header Style.............................................*/
+
+
+header#top {
+    padding: 40px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #9b1e2d;
+}
+
+h1.title {
+    color: #FFF9F9;
+    margin: 15px auto;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+input#submit {
+    margin-left: 8px;
+    background-color: #ABA5A5;
+    font-size: 1em;
+    border-color: rgba(224, 216, 216, 0.78);
+    color: white;
+    letter-spacing: 0.07em;
+}
+
+input#search {
+    width: 72%;
+    font-size: 1.5em;
+}
+
+
+/*Image Style.............................................*/
+
+ul#displayPhotos {
+    float: left;
+    width: 64%;
+}
+
+img {
+    width: 136%;
+    margin: 9%;
+}
+
+/*Body Style.............................................*/
+
+h2, h3 {
+    color: #6F6D6D;
+    padding: 15px 6px;
+    font-size: 1.5em;
+    font-family: sans-serif;
+}
+
+div#columnLeft {
+    float: left;
+}
+
+div#columnRight {
+	float: right;
+}
+
+
+div#columnRight, div#columnLeft {
+    width: 46.5%;
+    background-color: #EFE1E1;
+    border-color: rgba(255, 0, 0, 0.23);
+    border-style: solid;
+    border-width: 5px;
+}
+
+div#group {
+max-width: 940px;
+    margin: 0 auto;
+    padding: 2.5%;
+
+}
+
+div#group:after {
+  content:"";
+  display: table;
+  clear: both;
+}
+
+/*Links Style.............................................*/
+
+
+.formatLinks {
+    padding: 5px 8px;
+    margin: 5px 1px 20px;
+}
+
+p {
+    padding-top: 13px;
+    font-size: 0.9em;
+}
+
+li.tittleLink {
+    font-weight: bold;
+    padding-bottom: 9px;
+}
+
+a {
+    font-size: 0.75em;
+    text-decoration: none;
+    color: #EF8D43;
+}
+
+/*Message display Style.............................................*/
+
+div#message {
+    text-align: center;
+    background-color: #F1EBEB;
+    padding-bottom: 13px;
+    padding-top: 13px;
+    font-size: 1.5em;
+    font-family: arial,sans-serif;
+}
+
+/*Navigation Style.............................................*/
+
+nav {
+    text-align: center;
+    font-size: 1em;
+    letter-spacing: 1em;
+    margin-bottom: 32px;
+}

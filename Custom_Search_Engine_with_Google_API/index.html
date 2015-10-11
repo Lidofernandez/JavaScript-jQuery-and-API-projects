@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>24i|Project</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header id="top" class="main-header">
+	
+	<h1 class="title">Custom Search Engine</h1>
+	<form class="form">
+		<label for="search" class="label"></label>
+		<input type="search" name="search" id="search">
+		<input type="submit" value="Search" id="submit">
+	</form>     
+	
+</header><!-- /header -->
+
+<div id="message"></div>
+
+<div id="group">
+	<div id="columnRight">
+		<h2>Web Results</h2>
+		<ul id="displayLinks">
+			
+		</ul>
+	</div>
+
+	<div id="columnLeft">
+		<h3>Image Results</h3>
+		<ul id="displayPhotos">
+			
+		</ul>
+
+	</div>
+</div>
+	
+<nav>
+
+	<span id="content"></span> <br/>
+	
+	<ul id="displayPages">
+
+		 <button type="button" onclick="AJAXrequest(APIurl(1))">1</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(11))">2</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(21))">3</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(31))">4</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(41))">5</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(51))">6</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(61))">7</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(71))">8</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(81))">9</button>
+		  <button type="button" onclick="AJAXrequest(APIurl(91))">10</button>
+	
+	</ul>
+
+</nav>
+	
+<script src="js/app.js"></script>
+
+</body>
+</html>
