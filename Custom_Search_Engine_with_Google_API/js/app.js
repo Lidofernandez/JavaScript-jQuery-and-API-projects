@@ -2,15 +2,11 @@
 
 /*Getting the Google API.......................................................................................*/
 
-document.getElementById("displayPages").style.visibility = "hidden";
-
-var message;
-
 function APIurl (index) {
 
 	/*......................................................*/
-	//var apiKey = "Place here your own API Key"; 
-	//var searchGoogleID = "Play Here the ID of the Search Engine you want to set up";
+	// var apiKey = ""; 
+	// var searchGoogleID = "";
 	/*......................................................*/
 
 	var searchInput = document.getElementById("search").value;
@@ -28,7 +24,6 @@ function APIurl (index) {
 /*AJAX part.....................................................................................................*/
 
 function AJAXrequest (url) {
-
 	var hrx = new XMLHttpRequest();
 	hrx.onreadystatechange = function () {
 		if (hrx.readyState === 4 ) {
@@ -38,28 +33,14 @@ function AJAXrequest (url) {
 
 				/*Checking results.......................................................................*/
 
-				var totalResults = dataLinks.queries;
-				if ( totalResults.request[0].totalResults > 0)	{
-					printlinksPhotos(dataLinks);
-					var message = "";
-      				document.getElementById('message').innerHTML = message;
-
-				/*Describing errors information........................................................*/	
-
-				} else {
-					
-					message = "<p>Ups... the following terms were not found: </p>" + document.getElementById("search").value;
-					print(message);
-					document.getElementById("search").value = "";
-
-				} 
+				printWebResults(dataLinks);
 
 			} else {
-				message = "HTTP error "+hrx.status+" "+hrx.statusText;
-				print(message);
+				// message = "HTTP error "+hrx.status+" "+hrx.statusText;
+				// print(message); in process
+				console.log("HTTP error "+hrx.status+" "+hrx.statusText);
 			}
 		}
-
 	};
 
 	/*Send and GET resquest ............................................................................*/
@@ -67,7 +48,6 @@ function AJAXrequest (url) {
 	console.log(url);
 	hrx.open('GET', url, true);
 	hrx.send();
-
 };
 
 /*Getting Google Results......................................................................................*/
@@ -75,9 +55,6 @@ function AJAXrequest (url) {
 function googleSearch (event) {
 	if (document.getElementById("search").value !== "") {
 		AJAXrequest(APIurl(1));
-		var message = "";
-      	document.getElementById('message').innerHTML = message;
-      	document.getElementById("displayPages").style.visibility = "visible"; 
 
 	/*Errors messages for the search Box...................................................................*/
 
@@ -86,9 +63,7 @@ function googleSearch (event) {
 		print(message);
 
 	}
-
 	event.preventDefault();
-
 };
 
 /*Printer for error messages..............................*/
@@ -101,28 +76,63 @@ function print(message) {
 
 /*Printer for images and links....................................*/
 
-function printlinksPhotos(dataLinks) {
-	var printLinks = '<ul class="links">';
-	var printPhotos = '<ul class="photos">';
+function printWebResults(dataLinks) {
+var totalResults = dataLinks.queries;
+if ( parseInt(totalResults.request[0].totalResults) > 0)	{
+	console.log(parseInt(totalResults.request[0].totalResults));
+	var printLinks = "<h2>Web results</h2>";
+		printLinks += '<ul class="links">';
 	for (var i = 0; i < dataLinks.items.length; i += 1) {
 		printLinks += '<div class="formatLinks">';
 		printLinks += '<li class="tittleLink">' + dataLinks.items[i].htmlTitle + '</li>';
 		printLinks += '<li><a href="' + dataLinks.items[i].link + '">' + dataLinks.items[i].link + '</a></li>';
-		printLinks += '<p>' + dataLinks.items[i].snippet + '</p>';
-		printLinks += '</div>';
-		if (dataLinks.items[i].pagemap.cse_image) {
-			printPhotos += '<li class="image"><img src="'+ dataLinks.items[i].pagemap.cse_image[0].src+'" alt = "imgSection"></li>';
-			printPhotos += '</ul>';
-			document.getElementById("displayPhotos").innerHTML = printPhotos;				
+		if (dataLinks.items[i].pagemap) {
+		printLinks += '<table class="description"><tr><td><a href="'+ dataLinks.items[i].link +'"><img src="'+ dataLinks.items[i].pagemap.cse_image[0].src+'" alt = "imgSection"></a></td>';
 		}
+		printLinks += '<td><p>' + dataLinks.items[i].snippet + '</p></td></tr></table>';
+		printLinks += '</div>';
 	}
 	printLinks += '</ul>';
-	document.getElementById("displayLinks").innerHTML = printLinks;
 	
+	document.getElementById("displayWebResults").innerHTML = printLinks;
+
+	
+	if (parseInt(totalResults.request[0].totalResults) > 0) {
+		var pages = Math.round(parseInt(totalResults.request[0].totalResults)/10);
+		console.log(pages);
+		var displayPages = document.getElementById("displayPages");
+		var printNavigation = "<ul>";
+		if (pages > 10) {
+
+			//create elements with javaScript http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_createelement2
+
+			function displayPagesList (i) {
+				printNavigation += '<li><button type="button" ';
+				printNavigation += 'onclick= "' + AJAXrequest.bind(null, APIurl(i*10+1)) + ';" ';
+				printNavigation += ' >'+ parseInt(i) +'</button</li>';
+			};
+			for (var i = 1; i <= 10; i+=1) {
+				displayPagesList(i);
+			}
+		} else if (pages <= 10) {
+			for (var i = 2; i <= pages; i+=1) {
+				printNavigation += '<li><button type="button" '+ displayPages.addEventListener('click', AJAXrequest.bind(null, APIurl(i*10+1)), false) +' ">'+ parseInt(i) +'</button</li>';
+			}
+		}
+	}
+	printNavigation += '</ul>';
+	document.getElementById('displayPages').innerHTML = printNavigation; 
+
+/*Describing errors information........................................................*/	
+
+} else {
+	message = "<p>Ups... the following terms were not found: </p>" + document.getElementById("search").value;
+	print(message);
+} 
+
 };
 
 /*Handlers.................................................*/
 
 var startSearch = document.getElementById("submit");
 startSearch.addEventListener('click', googleSearch, false);
-
