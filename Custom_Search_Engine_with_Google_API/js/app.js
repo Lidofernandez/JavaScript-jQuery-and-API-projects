@@ -54,8 +54,8 @@ function footer (url, printResults) {
 
 function url (index) {
 	/*......................................................*/
-	var apiKey = "AIzaSyCq2i7QqN9cXepXLsCqPTYfzvCJyo8Scd0"; 
-	var searchGoogleID = "004975204272958123692:mhgx86zgpoa";
+	var apiKey = ""; 
+	var searchGoogleID = "";
 	/*......................................................*/
 	var searchInput = document.getElementById("search").value;
 	var googleUrl = "https://www.googleapis.com/customsearch/v1?";
